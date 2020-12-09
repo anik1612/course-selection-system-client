@@ -1,8 +1,7 @@
 .welcome-section{
     background-image: url('../../images/welcome-bg.jpg');
     height: 100vh;
-    background-size: contain;
-    background-position: center center;
+    background-size: fill;
     position: relative;
 }
 

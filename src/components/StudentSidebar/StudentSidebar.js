@@ -21,7 +21,7 @@ const StudentSidebar = () => {
                     </Link>
                 </li>
                 <li className='border-bottom d-flex justify-content-start pl-3'>
-                    <Link to='/dashboard/student/Exit' className='text-decoration-none dashboard-link my-3'>
+                    <Link to='/dashboard/student/Schedule' className='text-decoration-none dashboard-link my-3'>
                         Show Schedule
                     </Link>
                 </li>

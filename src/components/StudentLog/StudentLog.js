@@ -3,25 +3,23 @@ import swal from 'sweetalert';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import Students from '../Students/Students';
+import Axios from 'axios'
 
 const StudentLog = () => {
     const [students, setStudents] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/user/student')
+        Axios.get('http://localhost:5000/user/student')
             .then(res => res.json())
             .then(data => {
-                setStudents(data.data)
+                setStudents(data.data.data)
             })
     }, [])
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/user/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
+        Axios.delete(`http://localhost:5000/user/${id}`)
             .then(data => {
-                if (data) {
+                if (data.data) {
                     const remainStudent = students.filter(student => student._id !== id);
                     setStudents(remainStudent);
                     swal('success', 'Account Deleted successfully', 'success');

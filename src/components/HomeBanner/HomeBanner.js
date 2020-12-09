@@ -10,7 +10,7 @@ const HomeBanner = () => {
             { !loggedInUser.username ?
                 <div className="pt-5 welcome-section">
                     <div className='layer d-flex justify-content-center align-items-center'>
-                        <div className='mt-3'>
+                        <div className='login-btn'>
                             <Link to="/login" className="btn font-weight-bold text-white btn-success px-5 py-3 font-weight-bold">
                                 Login
                             </Link>

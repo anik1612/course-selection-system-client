@@ -3,24 +3,19 @@ import { useForm } from 'react-hook-form';
 import swal from 'sweetalert';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
+import Axios from 'axios';
 
 const TeacherReg = () => {
     const { register, handleSubmit, errors } = useForm();
+    
     const onSubmit = (data, e) => {
         const username = data.username;
         const password = data.password;
         const role = 'teacher';
 
-        fetch('http://localhost:5000/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password, role })
-        })
-            .then(res => res.json())
+        Axios.post('http://localhost:5000/signup', { username, password, role })
             .then(data => {
-                if (data) {
+                if (data.data) {
                     swal('Success', 'New Teacher account created!', 'success')
                     e.target.reset();
                 }
@@ -47,7 +42,7 @@ const TeacherReg = () => {
                                     {errors.username && <p className='text-danger'>this is can't be blank</p>}
                                     <input type="text" className='form-control mb-3' name="password" placeholder="Enter Password" ref={register({ required: true })} />
                                     {errors.password && <p className='text-danger'>this is can't be blank</p>}
-                                    <input type="submit" className='btn btn-block font-weight-bold btn-outline-primary' value="Submit"/>
+                                    <input type="submit" className='btn btn-block font-weight-bold btn-outline-primary' value="Submit" />
                                 </form>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import Cart from '../Cart/Cart';
 import Course from '../Course/Course';
@@ -6,24 +6,52 @@ import './Shop.css'
 import useLocalStorageState from 'use-local-storage-state/dist';
 import StudentSidebar from '../StudentSidebar/StudentSidebar';
 import Header from '../Header/Header';
+import swal from 'sweetalert';
+import { UserContext } from '../../App';
+import Axios from 'axios'
+import Preloader from '../Preloader/Preloader';
 
 
 const Shop = () => {
     const [courses, setCourses] = useState([]);
     const [cart, setCart] = useLocalStorageState('cart', []);
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [preloader, setPreloader] = useState(true)
 
     useEffect(() => {
-        fetch('http://localhost:5000/course')
-            .then(res => res.json())
+        Axios.get('http://localhost:5000/course')
             .then(data => {
-                setCourses(data.data)
+                setCourses(data.data.data)
+                setPreloader(false)
             })
     }, [])
 
     //add item to cart
     const addToCart = (course) => {
-        const newCart = [...cart, course];
-        setCart(newCart);
+        const isExisting = cart.find(item => item === course)
+        if (isExisting) {
+            swal('You have selected this course', 'Please Select another available course');
+        } else {
+            const newCart = [...cart, course];
+            setCart(newCart);
+        }
+    }
+
+    const handleEnroll = (course) => {
+        const remainCourse = cart.filter(item => item !== course)
+        setCart(remainCourse);
+    }
+
+    const handleConfirmBtn = () => {
+        const username = loggedInUser.username;
+        Axios.post('http://localhost:5000/enrolledCourse', { cart, username })
+            .then(data => {
+                if (data.data.success) {
+                    swal('Well Done', 'you have been taken all this course', 'success')
+                } else {
+                    swal('error', 'something went wrong', 'error')
+                }
+            })
     }
 
     return (
@@ -33,20 +61,25 @@ const Shop = () => {
                 <div className="col-md-2 pl-0">
                     <StudentSidebar />
                 </div>
+                {
+                    preloader ? <Preloader />
+                        :
+                        <>
+                            <div className="col-md-6 row course-area border-right border-top pt-3 courses-container">
+                                {courses.map(course => <Course course={course} key={course.id} addToCart={addToCart}></Course>)}
+                            </div>
 
-                <div className="col-md-6 row course-area border-right border-top pt-3 courses-container">
-                    {courses.map(course => <Course course={course} key={course.id} addToCart={addToCart}></Course>)}
-                </div>
-
-                <div className="col-md-3 cart-area pt-4 cart-container border-top">
-                    <h3 className="text-center">Course Enrolled: {cart.length}</h3>
-                    <ul className="list-group">
-                        {cart.map(course => <Cart course={course} />)}
-                    </ul>
-                    <button type="button" className="btn btn-success btn-block mb-5">
-                        show schedule <span className="badge badge-light"></span>
-                    </button>
-                </div>
+                            <div className="col-md-3 cart-area pt-4 cart-container border-top">
+                                <h3 className="text-center">Course Enrolled: {cart.length}</h3>
+                                <ul className="list-group">
+                                    {cart.map(course => <Cart course={course} handleEnroll={handleEnroll} />)}
+                                </ul>
+                                <button onClick={handleConfirmBtn} type="button" className="btn btn-success btn-block mb-5">
+                                    Confirm
+                                </button>
+                            </div>
+                        </>
+                }
 
             </div>
         </div>

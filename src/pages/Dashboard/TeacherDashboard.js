@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../App';
 import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import TeacherSidebar from '../../components/TeacherSidebar/TeacherSidebar';
 
 const TeacherDashboard = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
     return (
         <div className='teacher-dashboard'>
             <Header />
@@ -12,8 +14,10 @@ const TeacherDashboard = () => {
                     <TeacherSidebar />
                 </div>
                 <div className='col-md-8 mt-5'>
-                    <h1 className='font-weight-bold text-success'>Working on this currently</h1> 
-                    <h2 className='ml-5 pl-5 text-danger'>Coming very soon..</h2>
+                    <p className=''>Logged in time: {new Date().toLocaleTimeString()} - {new Date().toLocaleDateString()}</p>
+                    <h1 className='font-weight-bold d-inline-block border-bottom border-success'>
+                        Welcome Teacher {loggedInUser.username}
+                    </h1>
                 </div>
             </div>
         </div>

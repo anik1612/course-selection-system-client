@@ -13,7 +13,7 @@ const Sidebar = () => {
                     </Link>
                 </li>
                 <li className='border-bottom d-flex justify-content-start pl-3'>
-                    <Link to='/dashboard/showCourses' className='text-decoration-none dashboard-link my-3'>
+                    <Link to='/dashboard/admin/courses' className='text-decoration-none dashboard-link my-3'>
                         Show Courses
                     </Link>
                 </li>

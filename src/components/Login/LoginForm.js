@@ -3,14 +3,14 @@ import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
 import swal from 'sweetalert';
 import { UserContext } from '../../App';
+import Axios from 'axios'
 
 const LoginForm = () => {
     const { register, handleSubmit, errors } = useForm();
     const [LoggedInUser, setLoggedInUser] = useContext(UserContext)
 
     let history = useHistory();
-    let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/dashboard" } };
+    let { from } = { from: { pathname: "/dashboard" } };
 
     const isRedirect = (res) => {
         if(res){
@@ -19,19 +19,13 @@ const LoginForm = () => {
     }
 
     const onSubmit = data => {
-        fetch('http://localhost:5000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(resData => {
+        Axios.post('http://localhost:5000/login',data)
+                .then(resData => {
                 setLoggedInUser({
                     isSignedIn: true,
-                    username: resData.data.username,
-                    role: resData.data.role
+                    username: resData.data.data.username,
+                    role: resData.data.data.role,
+                    id: resData.data.data.id
                 })
                 isRedirect(true)
                 swal('Hurray!', 'login successful', 'success');

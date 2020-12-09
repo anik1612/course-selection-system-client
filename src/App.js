@@ -17,6 +17,10 @@ import StudentLog from './components/StudentLog/StudentLog';
 import TeacherReg from './components/TeacherReg/TeacherReg';
 import TeacherLog from './components/TeacherLog/TeacherLog';
 import Shop from './components/Shop/Shop';
+import StudentEditProfile from './components/EditProfile/StudentEditProfile';
+import TeacherEditProfile from './components/EditProfile/TeacherEditProfile';
+import TeacherAssignedCourse from './components/AssignedCourse/TeacherAssignedCourse';
+import ShowCourses from './components/ShowCourses/ShowCourses';
 
 export const UserContext = createContext({})
 
@@ -24,7 +28,8 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useLocalStorageState('user', {
     isSignedIn: false,
     username: '',
-    role: ''
+    role: '',
+    id: '',
   })
   return (
       <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
@@ -53,6 +58,18 @@ function App() {
             </PrivateRoute>
             <PrivateRoute path="/dashboard/student/showCourse">
               <Shop />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/student/editProfile">
+              <StudentEditProfile />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/teacher/editProfile">
+              <TeacherEditProfile />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/teacher/assignedCourse">
+              <TeacherAssignedCourse />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard/admin/courses">
+              <ShowCourses />
             </PrivateRoute>
             <PrivateRoute path="/dashboard">
               <Dashboard />

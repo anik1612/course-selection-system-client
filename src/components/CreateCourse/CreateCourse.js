@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import swal from 'sweetalert';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
+import Axios from 'axios'
 
 const CreateCourse = () => {
     const { register, handleSubmit, errors } = useForm();
@@ -12,16 +13,9 @@ const CreateCourse = () => {
         const courseTeacher = data.courseTeacher;
         const courseCredit = data.courseCredit;
 
-        fetch('http://localhost:5000/createCourse', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ courseId, courseName, courseTeacher, courseCredit })
-        })
-            .then(res => res.json())
+        Axios.post('http://localhost:5000/createCourse', { courseId, courseName, courseTeacher, courseCredit })
             .then(data => {
-                if (data) {
+                if (data.data) {
                     swal('Good Job', 'Course created successfully!', 'success')
                     e.target.reset();
                 }

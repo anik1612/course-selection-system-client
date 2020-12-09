@@ -3,12 +3,13 @@ import swal from 'sweetalert';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import Teachers from '../Teachers/Teachers';
+import Axios from 'axios';
 
 const TeacherLog = () => {
     const [teachers, setTeachers] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/user/teacher')
+        Axios.get('http://localhost:5000/user/teacher')
             .then(res => res.json())
             .then(data => {
                 setTeachers(data.data)
@@ -16,14 +17,10 @@ const TeacherLog = () => {
     }, [])
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/user/${id}`, {
-            method: 'DELETE',
-        })
-            .then(res => res.json())
+        Axios.delete(`http://localhost:5000/user/${id}`)
             .then(data => {
-                if (data) {
+                if (data.data) {
                     swal('success', 'Teacher Deleted Successfully', 'success')
-                    // refreshUI()
                     const remainTeacher = teachers.filter(student => student._id !== id)
                     setTeachers(remainTeacher)
                 } else {
@@ -31,15 +28,7 @@ const TeacherLog = () => {
                 }
             })
     }
-
-    // const refreshUI = () => {
-    //     fetch('http://localhost:5000/user/student')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setTeachers(data.data)
-    //         })
-    // }
-
+    
     const handleEdit = (id) => {
 
     }
