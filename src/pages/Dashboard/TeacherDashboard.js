@@ -16,7 +16,7 @@ const TeacherDashboard = () => {
                 <div className='col-md-8 mt-5'>
                     <p className=''>Logged in time: {new Date().toLocaleTimeString()} - {new Date().toLocaleDateString()}</p>
                     <h1 className='font-weight-bold d-inline-block border-bottom border-success'>
-                        Welcome Teacher {loggedInUser.username}
+                        Welcome Teacher {loggedInUser.name.toUpperCase()}
                     </h1>
                 </div>
             </div>

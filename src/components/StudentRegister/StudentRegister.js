@@ -9,11 +9,9 @@ const StudentRegister = () => {
 
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = (data, e) => {
-        const username = data.username;
-        const password = data.password;
-        const role = 'student';
+        const { name, username, password } = data;
 
-        Axios.post('http://localhost:5000/signup', { username, password, role })
+        Axios.post('http://localhost:5000/signup', { name, username, password, role: 'student' })
             .then(data => {
                 if (data.data) {
                     swal('Success', 'New Student account created!', 'success')
@@ -21,7 +19,7 @@ const StudentRegister = () => {
                 }
             })
             .catch(error => {
-                swal('Bad Request', 'Something went wrong', 'error');
+                swal('Bad Request', `${error}`, 'error');
             })
     };
 
@@ -38,7 +36,17 @@ const StudentRegister = () => {
                             <div className="card card-body">
                                 <h1 className='text-dark font-weight-bold mb-3 mb-4'>Register New Student</h1>
                                 <form onSubmit={handleSubmit(onSubmit)}>
-                                    <input type="text" className='form-control mb-3' name="username" placeholder="Enter Username" ref={register({ required: true })} />
+                                    <input type="text"
+                                        className='form-control mb-3'
+                                        name="name"
+                                        placeholder="Enter Student Name"
+                                        ref={register({ required: true })} />
+                                    {errors.name && <p className='text-danger'>this is can't be blank</p>}
+                                    <input type="text"
+                                        className='form-control mb-3'
+                                        name="username"
+                                        placeholder="Enter Username"
+                                        ref={register({ required: true })} />
                                     {errors.username && <p className='text-danger'>this is can't be blank</p>}
                                     <input type="text" className='form-control mb-3' name="password" placeholder="Enter Password" ref={register({ required: true })} />
                                     {errors.password && <p className='text-danger'>this is can't be blank</p>}

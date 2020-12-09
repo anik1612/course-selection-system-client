@@ -10,7 +10,6 @@ const StudentLog = () => {
 
     useEffect(() => {
         Axios.get('http://localhost:5000/user/student')
-            .then(res => res.json())
             .then(data => {
                 setStudents(data.data.data)
             })
@@ -40,12 +39,12 @@ const StudentLog = () => {
                 <div className="col-md-2 pl-0">
                     <Sidebar />
                 </div>
-                <div className="col-md-9 ml-5 mt-5">
+                <div className="col-md-8 ml-5 mt-5">
                     <table class="table">
                         <thead>
-                            <tr>
+                            <tr className='text-center'>
+                                <th scope="col">Full Name</th>
                                 <th scope="col">Username</th>
-                                <th scope="col">ID</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>

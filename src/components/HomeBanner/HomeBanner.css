@@ -1,7 +1,8 @@
-.welcome-section{
+.welcome-section {
     background-image: url('../../images/welcome-bg.jpg');
     height: 100vh;
-    background-size: fill;
+    background-size: cover;
+    background-repeat: none;
     position: relative;
 }
 

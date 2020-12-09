@@ -7,21 +7,18 @@ import Axios from 'axios';
 
 const TeacherReg = () => {
     const { register, handleSubmit, errors } = useForm();
-    
-    const onSubmit = (data, e) => {
-        const username = data.username;
-        const password = data.password;
-        const role = 'teacher';
 
-        Axios.post('http://localhost:5000/signup', { username, password, role })
+    const onSubmit = (data, e) => {
+        const { name, username, password } = data;
+        Axios.post('http://localhost:5000/signup', { name, username, password, role: 'teacher' })
             .then(data => {
                 if (data.data) {
-                    swal('Success', 'New Teacher account created!', 'success')
+                    swal('Success', 'New Teacher has been created successfully!', 'success')
                     e.target.reset();
                 }
             })
             .catch(error => {
-                swal('Bad Request', 'Something went wrong', 'error');
+                swal('Bad Request', `${error}`, 'error');
             })
     };
 
@@ -38,6 +35,8 @@ const TeacherReg = () => {
                             <div className="card card-body">
                                 <h1 className='text-dark font-weight-bold mb-3 mb-4'>Register New Teacher</h1>
                                 <form onSubmit={handleSubmit(onSubmit)}>
+                                    <input type="text" className='form-control mb-3' name="name" placeholder="Enter Teacher Name" ref={register({ required: true })} />
+                                    {errors.name && <p className='text-danger'>this is can't be blank</p>}
                                     <input type="text" className='form-control mb-3' name="username" placeholder="Enter Username" ref={register({ required: true })} />
                                     {errors.username && <p className='text-danger'>this is can't be blank</p>}
                                     <input type="text" className='form-control mb-3' name="password" placeholder="Enter Password" ref={register({ required: true })} />

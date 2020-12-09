@@ -44,7 +44,7 @@ const Shop = () => {
 
     const handleConfirmBtn = () => {
         const username = loggedInUser.username;
-        Axios.post('http://localhost:5000/enrolledCourse', { cart, username })
+        Axios.post('http://localhost:5000/enrolledCourse', { cart, username,  })
             .then(data => {
                 if (data.data.success) {
                     swal('Well Done', 'you have been taken all this course', 'success')

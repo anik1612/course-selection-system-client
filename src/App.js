@@ -19,70 +19,75 @@ import TeacherLog from './components/TeacherLog/TeacherLog';
 import Shop from './components/Shop/Shop';
 import StudentEditProfile from './components/EditProfile/StudentEditProfile';
 import TeacherEditProfile from './components/EditProfile/TeacherEditProfile';
-import TeacherAssignedCourse from './components/AssignedCourse/TeacherAssignedCourse';
 import ShowCourses from './components/ShowCourses/ShowCourses';
+import StudentSchedule from './components/StudentSchedule/StudentSchedule';
+import TeacherSchedule from './components/TeacherSchedule/TeacherSchedule';
 
 export const UserContext = createContext({})
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useLocalStorageState('user', {
     isSignedIn: false,
+    name: '',
     username: '',
     role: '',
     id: '',
   })
   return (
-      <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
-        <Router>
-          <Switch>
-            <Route path="/home">
-              <Home />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <PrivateRoute path="/dashboard/studentReg">
-              <StudentRegister />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/studentLog">
-              <StudentLog />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/teacherReg">
-              <TeacherReg />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/teacherLog">
-              <TeacherLog />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/createCourse">
-              <CreateCourse />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/student/showCourse">
-              <Shop />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/student/editProfile">
-              <StudentEditProfile />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/teacher/editProfile">
-              <TeacherEditProfile />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/teacher/assignedCourse">
-              <TeacherAssignedCourse />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard/admin/courses">
-              <ShowCourses />
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard">
-              <Dashboard />
-            </PrivateRoute>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="*">
-              <NoMatch />
-            </Route>
-          </Switch>
-        </Router>
-      </UserContext.Provider >
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <Router>
+        <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <PrivateRoute path="/dashboard/studentReg">
+            <StudentRegister />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/studentLog">
+            <StudentLog />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/teacherReg">
+            <TeacherReg />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/teacherLog">
+            <TeacherLog />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/createCourse">
+            <CreateCourse />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/student/showCourse">
+            <Shop />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/student/editProfile">
+            <StudentEditProfile />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/teacher/editProfile">
+            <TeacherEditProfile />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/teacher/schedule">
+            <TeacherSchedule />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/admin/courses">
+            <ShowCourses />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/student/schedule">
+            <StudentSchedule />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
+      </Router>
+    </UserContext.Provider >
   );
 }
 

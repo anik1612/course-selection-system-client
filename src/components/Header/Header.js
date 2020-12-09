@@ -44,7 +44,7 @@ const Header = () => {
                                     <p className="text-white ml-auto mr-3"></p>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {loggedInUser.username}
+                                            {loggedInUser.name}
                                         </button>
                                         <div class="dropdown-menu">
                                             <button class='btn' onClick={() => setLoggedInUser({})}>Logout</button>

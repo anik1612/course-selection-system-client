@@ -9,7 +9,7 @@ const Cart = ({ course, handleEnroll }) => {
         <div>
             <li className="list-group-item d-flex my-2 shadow justify-content-center bg-dark text-white border rounded">
                 <span>
-                    {course.name ? course.name : course.courseName.toUpperCase()}
+                    {course.courseName.toUpperCase()}
                     <button onClick={() => handleEnroll(course)} className="btn btn-danger ml-3">
                         <FontAwesomeIcon icon={faTrash} />
                     </button>

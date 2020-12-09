@@ -11,8 +11,8 @@ const TeacherSidebar = () => {
                     </Link>
                 </li>
                 <li className='border-bottom d-flex justify-content-start pl-3'>
-                    <Link to='/dashboard/teacher/assignedCourse' className='text-decoration-none dashboard-link my-3'>
-                        Assigned Courses
+                    <Link to='/dashboard/teacher/schedule' className='text-decoration-none dashboard-link my-3'>
+                        Schedule
                     </Link>
                 </li>
                 <li className='border-bottom d-flex justify-content-start pl-3'>

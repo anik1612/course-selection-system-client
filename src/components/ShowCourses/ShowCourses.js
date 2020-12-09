@@ -5,14 +5,17 @@ import swal from 'sweetalert';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import Axios from 'axios'
+import Preloader from '../Preloader/Preloader';
 
 const ShowCourses = () => {
     const [courses, setCourses] = useState([])
+    const [preloader, setPreloader] = useState(true)
 
     useEffect(() => {
         Axios.get('http://localhost:5000/course')
             .then(data => {
                 setCourses(data.data.data)
+                setPreloader(false)
             })
     }, [])
 
@@ -22,7 +25,7 @@ const ShowCourses = () => {
                 if (data.data.success) {
                     const restCourse = courses.filter(course => course._id !== id);
                     setCourses(restCourse);
-                    swal('success', `${data.message}`, 'success')
+                    swal('success', `${data.data.message}`, 'success')
                 } else {
                     swal('error', `something went wrong`, 'error')
                 }
@@ -40,54 +43,59 @@ const ShowCourses = () => {
                 <div className="col-md-2 pl-0">
                     <Sidebar />
                 </div>
-                <div className="col-md-10 mt-5">
-                    <div className="row">
-                        {
-                            courses.map(course => {
-                                return (
+                {
+                    preloader ? <Preloader />
+                        :
+                        <div className="col-md-10 mt-5">
+                            <div className="row">
+                                {
+                                    courses.map(course => {
+                                        return (
 
-                                    <div className="col-md-4 py-3">
-                                        <div className="card">
-                                            {course.img ?
-                                                <img className="card-img-top" style={{ height: "200px" }} src={course.img} alt="" />
-                                                : <img className="card-img-top" style={{ height: "200px" }} src='https://fakeimg.pl/300/' alt="" />
-                                            }
-                                            <div className="card-body">
-                                                <h5 className="card-title">{course.name ? course.name : course.courseName}</h5>
-                                                <h6>Instructor: {course.instructor ? course.instructor : course.courseTeacher}</h6>
-                                                <button
-                                                    className="btn btn-sm btn-success mr-3"
-                                                    onClick={() => deleteCourse(course._id)}
-                                                >
-                                                    <FontAwesomeIcon
-                                                        className="mr-2"
-                                                        icon={faMinusCircle}
-                                                    />
-                                                    Delete Course
-                                                </button>
-                                                <button
-                                                    className="btn btn-sm btn-success"
-                                                    onClick={() => editCourse(course._id)}
-                                                >
-                                                    <FontAwesomeIcon
-                                                        className="mr-2"
-                                                        icon={faEdit}
-                                                    />
-                                                    Edit Course
-                                                </button>
+                                            <div className="col-md-4 py-3">
+                                                <div className="card">
+                                                    {course.img ?
+                                                        <img className="card-img-top" style={{ height: "200px" }} src={course.img} alt="" />
+                                                        : <img className="card-img-top" style={{ height: "200px" }} src='https://fakeimg.pl/300/' alt="" />
+                                                    }
+                                                    <div className="card-body mx-auto text-center">
+                                                        <h5 className="card-title">{course.courseName.toUpperCase()}</h5>
+                                                        <h6>Credits: {course.courseCredit.toUpperCase()}</h6>
+                                                        <h6>Teacher: {course.courseTeacher.toUpperCase()}</h6>
+                                                        <h6>ClassRoom: {course.classRoomNum.toUpperCase()}</h6>
+                                                        <h6>Course Day: {course.classDay.toUpperCase()}</h6>
+                                                        <h6>Course Time:  {course.startTime} - {course.endTime}</h6>
+                                                        <button
+                                                            className="btn btn-sm btn-success mr-3"
+                                                            onClick={() => deleteCourse(course._id)}
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                className="mr-2"
+                                                                icon={faMinusCircle}
+                                                            />
+                                                            Delete Course
+                                                        </button>
+                                                        <button
+                                                            className="btn btn-sm btn-success"
+                                                            onClick={() => editCourse(course._id)}
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                className="mr-2"
+                                                                icon={faEdit}
+                                                            />
+                                                            Edit Course
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-
-                                )
-                            })
-                        }
-                    </div>
-                </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                }
             </div>
         </div>
-
     );
 };
 

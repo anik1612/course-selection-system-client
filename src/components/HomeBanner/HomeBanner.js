@@ -20,7 +20,7 @@ const HomeBanner = () => {
                 :
                 <div className="welcome-section">
                     <div class="layer">
-                        <h1 className="text-white text-center mt-3"> Hello {loggedInUser.username}</h1>
+                        <h1 className="text-white text-center mt-3"> Hello {loggedInUser.name.toUpperCase()}</h1>
                     </div>
                 </div>
             }

@@ -10,9 +10,8 @@ const TeacherLog = () => {
 
     useEffect(() => {
         Axios.get('http://localhost:5000/user/teacher')
-            .then(res => res.json())
             .then(data => {
-                setTeachers(data.data)
+                setTeachers(data.data.data)
             })
     }, [])
 
@@ -28,7 +27,7 @@ const TeacherLog = () => {
                 }
             })
     }
-    
+
     const handleEdit = (id) => {
 
     }
@@ -44,8 +43,8 @@ const TeacherLog = () => {
                     <table class="table">
                         <thead>
                             <tr>
+                                <th scope="col">Full Name</th>
                                 <th scope="col">Username</th>
-                                <th scope="col">ID</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>

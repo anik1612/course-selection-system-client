@@ -4,8 +4,8 @@ const Teachers = ({ teacher, handleDelete, handleEdit }) => {
     return (
         <>
             <tr>
-                <th scope="row">{teacher.username}</th>
-                <td>{teacher._id}</td>
+                <th scope="row">{teacher.name}</th>
+                <td>{teacher.username}</td>
                 <td>
                     <button onClick={() => handleEdit(teacher._id)} className="btn btn-warning">
                         edit
@@ -13,7 +13,7 @@ const Teachers = ({ teacher, handleDelete, handleEdit }) => {
                     <button onClick={() => handleDelete(teacher._id)} className="btn btn-danger ml-2">
                         delete
                     </button>
-                </td>
+            </td>
             </tr>
         </>
     );
