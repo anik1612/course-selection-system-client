@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import swal from 'sweetalert';
 
 const Marking = ({ student, selectedCourse }) => {
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
         const courseName = selectedCourse.selectedCourse;

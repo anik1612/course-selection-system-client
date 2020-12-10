@@ -8,12 +8,12 @@ import swal from 'sweetalert';
 import Marking from './Marking';
 
 const TeacherMarking = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser] = useContext(UserContext)
     const [courses, setCourses] = useState([])
     const [enrolledStu, setEnrolledStu] = useState([])
     const { name } = loggedInUser;
     const [selectedCourse, setSelectedCourse] = useState([])
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
 
     useEffect(() => {
         Axios.get(`http://localhost:5000/teacher/${name}`)
@@ -23,7 +23,7 @@ const TeacherMarking = () => {
             .catch(error => {
                 swal('error', `${error}`, 'error')
             })
-    }, [])
+    }, [name])
 
     const onSubmit = (data) => {
         Axios.get(`http://localhost:5000/course/EnrolledCourseInfo`)

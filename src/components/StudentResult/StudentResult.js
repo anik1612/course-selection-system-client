@@ -7,7 +7,7 @@ import Preloader from '../Preloader/Preloader';
 import StudentSidebar from '../StudentSidebar/StudentSidebar';
 
 const StudentResult = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser] = useContext(UserContext)
     const [results, setResults] = useState([])
     const [preloader, setPreloader] = useState(false)
     const { username } = loggedInUser
@@ -23,7 +23,7 @@ const StudentResult = () => {
                 swal('error', `${error}`, 'error')
                 setPreloader(false)
             })
-    }, [])
+    }, [username])
 
     return (
         <div className='mb-5'>

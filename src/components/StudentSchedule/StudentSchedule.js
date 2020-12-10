@@ -7,7 +7,7 @@ import Preloader from '../Preloader/Preloader';
 import StudentSidebar from '../StudentSidebar/StudentSidebar';
 
 const StudentSchedule = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [loggedInUser] = useContext(UserContext)
     const [courses, setCourses] = useState([])
     const [preloader, setPreloader] = useState(false)
 
