@@ -34,11 +34,11 @@ const TeacherSchedule = () => {
                 <div className='col-md-2 pl-0'>
                     <TeacherSidebar />
                 </div>
-                <div className='col-md-10'>
+                <div className='col-md-10 d-flex justify-content-center'>
                     {
                         preloader ? <Preloader />
                             :
-                            <div className="col-md-10 row d-flex justify-content-center">
+                            <div className="col-md-10 row">
                                 {
                                     courses.map(course => {
                                         return (

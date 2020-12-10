@@ -40,27 +40,31 @@ const StudentLog = () => {
                     <Sidebar />
                 </div>
                 <div className="col-md-8 ml-5 mt-5">
-                    <table class="table">
-                        <thead>
-                            <tr className='text-center'>
-                                <th scope="col">Full Name</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                students.map(student =>
-                                    <Students
-                                        student={student}
-                                        key={student._id}
-                                        handleDelete={handleDelete}
-                                        handleEdit={handleEdit}
-                                    />
-                                )
-                            }
-                        </tbody>
-                    </table>
+                    <div className="card">
+                        <div className="card-body">
+                            <table class="table border">
+                                <thead>
+                                    <tr className='text-center'>
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        students.map(student =>
+                                            <Students
+                                                student={student}
+                                                key={student._id}
+                                                handleDelete={handleDelete}
+                                                handleEdit={handleEdit}
+                                            />
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

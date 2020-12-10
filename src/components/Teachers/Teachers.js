@@ -3,7 +3,7 @@ import React from 'react';
 const Teachers = ({ teacher, handleDelete, handleEdit }) => {
     return (
         <>
-            <tr>
+            <tr className='text-center'>
                 <th scope="row">{teacher.name}</th>
                 <td>{teacher.username}</td>
                 <td>

@@ -22,6 +22,8 @@ import TeacherEditProfile from './components/EditProfile/TeacherEditProfile';
 import ShowCourses from './components/ShowCourses/ShowCourses';
 import StudentSchedule from './components/StudentSchedule/StudentSchedule';
 import TeacherSchedule from './components/TeacherSchedule/TeacherSchedule';
+import TeacherMarking from './components/TeacherMarking/TeacherMarking';
+import StudentResult from './components/StudentResult/StudentResult';
 
 export const UserContext = createContext({})
 
@@ -75,6 +77,12 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/dashboard/student/schedule">
             <StudentSchedule />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/teacher/marking">
+            <TeacherMarking />
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard/student/marking">
+            <StudentResult />
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <Dashboard />

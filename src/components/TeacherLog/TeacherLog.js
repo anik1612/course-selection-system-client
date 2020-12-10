@@ -39,28 +39,34 @@ const TeacherLog = () => {
                 <div className="col-md-2 pl-0">
                     <Sidebar />
                 </div>
-                <div className="col-md-9 ml-5 mt-5">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Full Name</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                teachers.map(teacher =>
-                                    <Teachers
-                                        teacher={teacher}
-                                        key={teacher._id}
-                                        handleDelete={handleDelete}
-                                        handleEdit={handleEdit}
-                                    />
-                                )
-                            }
-                        </tbody>
-                    </table>
+                <div className="col-md-10 ml-5 mt-5 row d-flex justify-content-center">
+                    <div className='col-md-10 mt-5'>
+                        <div className='card'>
+                            <div className='card-body'>
+                                <table class="table border">
+                                    <thead>
+                                        <tr className='text-center'>
+                                            <th scope="col">Full Name</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            teachers.map(teacher =>
+                                                <Teachers
+                                                    teacher={teacher}
+                                                    key={teacher._id}
+                                                    handleDelete={handleDelete}
+                                                    handleEdit={handleEdit}
+                                                />
+                                            )
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

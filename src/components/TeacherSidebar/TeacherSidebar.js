@@ -16,7 +16,7 @@ const TeacherSidebar = () => {
                     </Link>
                 </li>
                 <li className='border-bottom d-flex justify-content-start pl-3'>
-                    <Link to='/dashboard/teacher/editProfile' className='text-decoration-none dashboard-link my-3'>
+                    <Link to='/dashboard/teacher/marking' className='text-decoration-none dashboard-link my-3'>
                         Student Scoring
                     </Link>
                 </li>
