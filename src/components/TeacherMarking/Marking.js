@@ -10,7 +10,7 @@ const Marking = ({ student, selectedCourse }) => {
         const courseName = selectedCourse.selectedCourse;
         const { username } = student;
         const { marks } = data;
-        Axios.post('http://localhost:5000/teacher/insertMarks', { courseName, username, marks })
+        Axios.post('https://cms-as.herokuapp.com/teacher/insertMarks', { courseName, username, marks })
             .then(data => {
                 swal('success', `${data.data.message}`, 'success')
             })

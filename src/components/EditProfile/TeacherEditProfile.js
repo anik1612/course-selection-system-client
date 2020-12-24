@@ -15,7 +15,7 @@ const TeacherEditProfile = () => {
         const id = loggedInUser.id;
 
         if (password === conPass) {
-            Axios.patch(`http://localhost:5000/user/${id}`,{ password })
+            Axios.patch(`https://cms-as.herokuapp.com/user/${id}`,{ password })
                     .then(data => {
                     if (data.data) {
                         swal('password change successfully!', 'success')

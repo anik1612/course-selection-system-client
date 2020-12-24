@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
-import Cart from '../Cart/Cart';
 import Course from '../Course/Course';
-import './Shop.css'
 import useLocalStorageState from 'use-local-storage-state/dist';
 import StudentSidebar from '../StudentSidebar/StudentSidebar';
 import Header from '../Header/Header';
@@ -10,16 +8,18 @@ import swal from 'sweetalert';
 import { UserContext } from '../../App';
 import Axios from 'axios'
 import Preloader from '../Preloader/Preloader';
+import CourseCart from '../CourseCart/CourseCart';
+import './Courses.css'
 
 
-const Shop = () => {
+const Courses = () => {
     const [courses, setCourses] = useState([]);
     const [cart, setCart] = useLocalStorageState('cart', []);
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [preloader, setPreloader] = useState(true)
 
     useEffect(() => {
-        Axios.get('http://localhost:5000/course')
+        Axios.get('https://cms-as.herokuapp.com/course')
             .then(data => {
                 setCourses(data.data.data)
                 setPreloader(false)
@@ -44,7 +44,7 @@ const Shop = () => {
 
     const handleConfirmBtn = () => {
         const username = loggedInUser.username;
-        Axios.post('http://localhost:5000/enrolledCourse', { cart, username,  })
+        Axios.post('https://cms-as.herokuapp.com/enrolledCourse', { cart, username,  })
             .then(data => {
                 if (data.data.success) {
                     swal('Well Done', 'you have been taken all this course', 'success')
@@ -72,7 +72,7 @@ const Shop = () => {
                             <div className="col-md-3 cart-area pt-4 cart-container border-top">
                                 <h3 className="text-center">Course Enrolled: {cart.length}</h3>
                                 <ul className="list-group">
-                                    {cart.map(course => <Cart course={course} handleEnroll={handleEnroll} />)}
+                                    {cart.map(course => <CourseCart course={course} handleEnroll={handleEnroll} />)}
                                 </ul>
                                 <button onClick={handleConfirmBtn} type="button" className="btn btn-success btn-block mb-5">
                                     Confirm
@@ -86,4 +86,4 @@ const Shop = () => {
     );
 };
 
-export default Shop;
+export default Courses;

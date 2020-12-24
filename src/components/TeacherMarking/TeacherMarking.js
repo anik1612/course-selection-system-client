@@ -16,7 +16,7 @@ const TeacherMarking = () => {
     const { register, handleSubmit } = useForm();
 
     useEffect(() => {
-        Axios.get(`http://localhost:5000/teacher/${name}`)
+        Axios.get(`https://cms-as.herokuapp.com/teacher/${name}`)
             .then(data => {
                 setCourses(data.data.data)
             })
@@ -26,7 +26,7 @@ const TeacherMarking = () => {
     }, [name])
 
     const onSubmit = (data) => {
-        Axios.get(`http://localhost:5000/course/EnrolledCourseInfo`)
+        Axios.get(`https://cms-as.herokuapp.com/course/EnrolledCourseInfo`)
             .then(resData => {
                 setEnrolledStu(resData.data.data)
             })

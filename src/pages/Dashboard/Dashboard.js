@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../App';
-import Header from '../../components/Header/Header';
-import Shop from '../../components/Shop/Shop';
 import AdminDashboard from './AdminDashboard';
 import StudentDashboard from './StudentDashboard';
 import TeacherDashboard from './TeacherDashboard';

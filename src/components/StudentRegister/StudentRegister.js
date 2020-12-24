@@ -11,7 +11,7 @@ const StudentRegister = () => {
     const onSubmit = (data, e) => {
         const { name, username, password } = data;
 
-        Axios.post('http://localhost:5000/signup', { name, username, password, role: 'student' })
+        Axios.post('https://cms-as.herokuapp.com/signup', { name, username, password, role: 'student' })
             .then(data => {
                 if (data.data) {
                     swal('Success', 'New Student account created!', 'success')

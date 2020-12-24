@@ -16,7 +16,7 @@ const StudentSchedule = () => {
     useEffect(() => {
         setPreloader(true)
         const { username } = loggedInUser;
-        Axios.get(`http://localhost:5000/enrolledCourses?username=${username}`)
+        Axios.get(`https://cms-as.herokuapp.com/enrolledCourses?username=${username}`)
             .then(data => {
                 setCourses(data.data.data[0].cart)
                 setPreloader(false)
@@ -25,7 +25,7 @@ const StudentSchedule = () => {
                 swal('error', `${error}`, 'error')
                 setPreloader(false)
             })
-    }, [])
+    }, [loggedInUser])
 
     console.log(courses);
 

@@ -10,7 +10,7 @@ const TeacherReg = () => {
 
     const onSubmit = (data, e) => {
         const { name, username, password } = data;
-        Axios.post('http://localhost:5000/signup', { name, username, password, role: 'teacher' })
+        Axios.post('https://cms-as.herokuapp.com/signup', { name, username, password, role: 'teacher' })
             .then(data => {
                 if (data.data) {
                     swal('Success', 'New Teacher has been created successfully!', 'success')

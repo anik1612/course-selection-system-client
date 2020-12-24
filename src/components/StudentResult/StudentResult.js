@@ -14,7 +14,7 @@ const StudentResult = () => {
 
     useEffect(() => {
         setPreloader(true)
-        Axios.get(`http://localhost:5000/student/result?username=${username}`)
+        Axios.get(`https://cms-as.herokuapp.com/student/result?username=${username}`)
             .then(data => {
                 setResults(data.data.data)
                 setPreloader(false)

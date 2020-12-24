@@ -9,14 +9,14 @@ const StudentLog = () => {
     const [students, setStudents] = useState([])
 
     useEffect(() => {
-        Axios.get('http://localhost:5000/user/student')
+        Axios.get('https://cms-as.herokuapp.com/user/student')
             .then(data => {
                 setStudents(data.data.data)
             })
     }, [])
 
     const handleDelete = (id) => {
-        Axios.delete(`http://localhost:5000/user/${id}`)
+        Axios.delete(`https://cms-as.herokuapp.com/user/${id}`)
             .then(data => {
                 if (data.data) {
                     const remainStudent = students.filter(student => student._id !== id);

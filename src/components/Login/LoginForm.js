@@ -22,7 +22,7 @@ const LoginForm = () => {
 
     const onSubmit = data => {
         setPreloader(true)
-        Axios.post('http://localhost:5000/login', data)
+        Axios.post('https://cms-as.herokuapp.com/login', data)
             .then(resData => {
                 setLoggedInUser({
                     isSignedIn: true,

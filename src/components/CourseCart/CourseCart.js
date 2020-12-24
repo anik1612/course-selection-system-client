@@ -1,9 +1,9 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import './Cart.css'
+import './CourseCart.css'
 
-const Cart = ({ course, handleEnroll }) => {
+const CourseCart = ({ course, handleEnroll }) => {
 
     return (
         <div>
@@ -19,4 +19,4 @@ const Cart = ({ course, handleEnroll }) => {
     );
 };
 
-export default Cart;
+export default CourseCart;

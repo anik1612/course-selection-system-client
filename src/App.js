@@ -16,7 +16,6 @@ import StudentRegister from './components/StudentRegister/StudentRegister';
 import StudentLog from './components/StudentLog/StudentLog';
 import TeacherReg from './components/TeacherReg/TeacherReg';
 import TeacherLog from './components/TeacherLog/TeacherLog';
-import Shop from './components/Shop/Shop';
 import StudentEditProfile from './components/EditProfile/StudentEditProfile';
 import TeacherEditProfile from './components/EditProfile/TeacherEditProfile';
 import ShowCourses from './components/ShowCourses/ShowCourses';
@@ -24,6 +23,7 @@ import StudentSchedule from './components/StudentSchedule/StudentSchedule';
 import TeacherSchedule from './components/TeacherSchedule/TeacherSchedule';
 import TeacherMarking from './components/TeacherMarking/TeacherMarking';
 import StudentResult from './components/StudentResult/StudentResult';
+import Courses from './components/Courses/Courses';
 
 export const UserContext = createContext({})
 
@@ -61,7 +61,7 @@ function App() {
             <CreateCourse />
           </PrivateRoute>
           <PrivateRoute path="/dashboard/student/showCourse">
-            <Shop />
+            <Courses />
           </PrivateRoute>
           <PrivateRoute path="/dashboard/student/editProfile">
             <StudentEditProfile />

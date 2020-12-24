@@ -9,14 +9,14 @@ const TeacherLog = () => {
     const [teachers, setTeachers] = useState([])
 
     useEffect(() => {
-        Axios.get('http://localhost:5000/user/teacher')
+        Axios.get('https://cms-as.herokuapp.com/user/teacher')
             .then(data => {
                 setTeachers(data.data.data)
             })
     }, [])
 
     const handleDelete = (id) => {
-        Axios.delete(`http://localhost:5000/user/${id}`)
+        Axios.delete(`https://cms-as.herokuapp.com/user/${id}`)
             .then(data => {
                 if (data.data) {
                     swal('success', 'Teacher Deleted Successfully', 'success')

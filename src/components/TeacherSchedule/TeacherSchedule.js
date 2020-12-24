@@ -16,7 +16,7 @@ const TeacherSchedule = () => {
     useEffect(() => {
         setPreloader(true)
         const { name } = loggedInUser;
-        Axios.get(`http://localhost:5000/teacher/${name}`)
+        Axios.get(`https://cms-as.herokuapp.com/teacher/${name}`)
             .then(data => {
                 setCourses(data.data.data);
                 setPreloader(false);

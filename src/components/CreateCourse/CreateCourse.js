@@ -18,7 +18,7 @@ const CreateCourse = () => {
             startTime,
             endTime } = data;
 
-        Axios.post('http://localhost:5000/createCourse', {
+        Axios.post('https://cms-as.herokuapp.com/createCourse', {
             courseId,
             courseName,
             courseTeacher,
